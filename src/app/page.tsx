@@ -2,34 +2,55 @@
 
 import React, { useState } from 'react'
 
+import { FiHome, FiMail, FiSettings } from 'react-icons/fi'
+
 // import CenteredHero from './components/common/Hero'
 import Modal from './components/common/Modal'
 
-import MarkdownEditor from './components/markdown/MarkdownEditor'
+import Sidebar from './components/common/Sidebar'
 
-function Home() {
-  // const [hero, setHero] = useState(CenteredHero({ id: 'hero', body: <h1 className='text-5xl font-bold'>Hello, world!</h1>, button_text: 'Click me!' }))
-  const [modal_1, setModal_1] = useState(Modal({ id: 'modal_1', title: 'Modal 1', body: 'This is a modal with a close button.', footer: 'OK' }))
+// import MarkdownEditor from './components/markdown/MarkdownEditor'
+import Home from './pages/Home'
+import MailEditor from './pages/MailEditor'
+import Dummy from './pages/Dummy'
+
+enum CurrentModule {
+  Home,
+  Mail,
+  Settings,
+  Dummy,
+}
+
+function HomePage() {
+  const [current_module, setCurrentModule] = useState<CurrentModule>(CurrentModule.Mail)
+  // console.log('current_module = ', current_module)
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      {/* {hero} */}
-      {modal_1}
+    <main className='static min-h-screen'>
 
-      <button className='btn' onClick={
-        () => {
-          // Set the body to current time
-          setModal_1(Modal({ id: 'modal_1', title: 'Modal 1', body: new Date().toLocaleTimeString(), footer: 'OK' }));
-          (document.getElementById('modal_1') as HTMLDialogElement)?.showModal()
-        }
-      }>Show Modal 1</button>
+      {(current_module === CurrentModule.Home) && <div>
+        <Home />
+      </div>}
 
-      
-      <div className='w-full'>
-        <MarkdownEditor />
-      </div>
+      {(current_module === CurrentModule.Mail) && <div>
+        <div className='flex max-h-screen flex-col items-center justify-between p-24'>
+
+          <MailEditor />
+        </div>
+      </div>}
+
+      {(current_module === CurrentModule.Dummy) && <div>
+        <Dummy />
+      </div>}
+
+      <Sidebar items={[
+        { icon: <FiHome />, label: '主页', onClick: () => setCurrentModule(CurrentModule.Home) },
+        { icon: <FiMail />, label: '邮件', onClick: () => setCurrentModule(CurrentModule.Mail) },
+        { icon: <FiSettings />, label: '设置', onClick: () => setCurrentModule(CurrentModule.Dummy) }
+      ]} />
+
     </main>
   )
 }
 
-export default Home
+export default HomePage

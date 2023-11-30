@@ -17,7 +17,14 @@ const config: Config = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ['winter'],
+    themes: [{
+      winter: {
+        ...require('daisyui/src/theming/themes')['winter'],
+        primary: 'pink',
+        secondary: 'yellow',
+        error: 'red',
+      }
+    }],
     base: true,
     styled: true,
     utils: true,

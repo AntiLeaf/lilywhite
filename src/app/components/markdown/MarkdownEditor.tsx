@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import Markdown from 'react-markdown'
+import MonacoEditor from '@monaco-editor/react'
 
-import MonacoEditor from '../common/MonacoEditor';
+// import MonacoEditor from '../common/MonacoEditor'
 import MarkdownRenderer from './MarkdownRenderer'
 
 import 'github-markdown-css'
@@ -25,8 +26,8 @@ for i in range(100):\n\
 $\LaTeX$');
 
   return (
-    <div className='flex h-[90vh] border border-gray-400 rounded-lg overflow-hidden'>
-      <div className='flex-1 border-r border-gray-300'>
+    <div className='flex h-[60vh] border border-primary rounded-lg overflow-hidden'>
+      <div className='flex-1 border-r border-primary'>
         <MonacoEditor
           language = 'markdown'
           defaultValue = {markdown}
@@ -36,7 +37,7 @@ $\LaTeX$');
           }}
         />
       </div>
-      <div className='flex-1 overflow-auto p-4 border-l border-gray-300'>
+      <div className='flex-1 overflow-auto p-4'>
         <div className='markdown-body'>
           <MarkdownRenderer markdown={markdown} />
         </div>
