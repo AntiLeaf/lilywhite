@@ -9,7 +9,11 @@ import MarkdownRenderer from './MarkdownRenderer'
 import 'github-markdown-css'
 import 'highlight.js/styles/github.css'
 
-function MarkdownEditor() {
+interface MarkdownEditorProps {
+  onLoaded? : () => void
+}
+
+const MarkdownEditor : React.FC<MarkdownEditorProps> = ({ onLoaded }) => {
   const [markdown, setMarkdown] = useState<string>('# 这是一级标题\n\
 ## 这是二级标题\n\
 ### 这是三级标题\n\
@@ -31,6 +35,7 @@ $\LaTeX$');
         <MonacoEditor
           language = 'markdown'
           defaultValue = {markdown}
+          // onValidate={() => { onLoaded && onLoaded() }}
           onChange = {(value) => {
             console.log(Markdown({children: value || ''}))
             setMarkdown(value || '')

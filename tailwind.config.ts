@@ -7,6 +7,9 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    colors: {
+      primary: '#ffc0cb',
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -15,21 +18,21 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: [{
-      winter: {
-        ...require('daisyui/src/theming/themes')['winter'],
-        primary: 'pink',
-        secondary: 'yellow',
-        error: 'red',
-      }
-    }],
-    base: true,
-    styled: true,
-    utils: true,
-    logs: true,
-  }
+  // plugins: [require("daisyui")],
+  // daisyui: {
+  //   themes: [{
+  //     winter: {
+  //       ...require('daisyui/src/theming/themes')['winter'],
+  //       primary: 'pink',
+  //       secondary: 'yellow',
+  //       error: 'red',
+  //     }
+  //   }],
+  //   base: true,
+  //   styled: true,
+  //   utils: true,
+  //   logs: true,
+  // }
 }
 
 export default config
